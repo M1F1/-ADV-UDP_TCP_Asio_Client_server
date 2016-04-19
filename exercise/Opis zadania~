@@ -1,0 +1,9 @@
+Nalezy wypelnic oznaczone pola ************** w:
+client/xo.client.cpp
+server/InputOutputTCP.h
+ 
+tak aby gra dobrze dzialala,
+a pakiety danych byly wysylane we wlasciwy sposob.
+
+Aby wlaczyc server: make run
+Aby jako client polaczyc sie z serverem: ./Client 127.0.0.1 1241

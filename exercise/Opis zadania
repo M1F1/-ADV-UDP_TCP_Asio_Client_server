@@ -1,0 +1,16 @@
+Należy zdefiniowac protokol wymiany pakietow (0 byte naglowkowy) w:
+
+XO/proto.txt
+
+oraz wypelnic oznaczone pola /**************/ na podstawie zdefiniowanego protokolu
+i slajdow z prezentacji:
+
+XO/client/xo.client.cpp
+XO/server/InputOutputTCP.h
+
+
+tak aby gra dobrze dzialala,
+a pakiety danych byly wysylane we wlasciwy sposob.
+
+Aby wlaczyc server: make run
+Aby jako client polaczyc sie z serverem: ./Client 127.0.0.1 1241

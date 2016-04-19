@@ -1,0 +1,49 @@
+#include <iostream>
+#include "boost/asio.hpp"
+#include "boost/bind.hpp"
+#include "boost/date_time/posix_time/posix_time.hpp"
+
+// zamiast tworzyc "wolna" funkcje jak w przykladzie poprzednim tworzymy
+// klase printer
+class printer{
+
+    boost::asio::deadline_timer timer_;
+    int count_;
+    int count_to_;
+
+   public:
+       // konstruktor klasy przyjmuje referencje obiektu io_service i uzywa jej
+       // przy inicjalizacji obiektu timer_, zmienna coun jest teraz atrybutem
+       // klasy 
+        printer(boost::asio::io_service& io)
+            : timer_(io, boost::posix_time::seconds(1)),
+              count_(0), count_to_(5) {
+                  // w przypadku gdy do funkcji async_wait przekazujemy metode
+                  // funkcji musimy ja "zbindowac"  z niejawnym parametrem this
+                  timer_.async_wait(boost::bind(&printer::print, this));
+        }
+        // w destruktorze  wypisujemy ostateczna wartosc countera
+       ~printer(){
+           std::cout << "Final count is " << count_ << std::endl; 
+       }
+       // funkcja przypomina handlera z poprzedniego przykladu jednak nie
+       // przyjmuje argumentow;
+       void print(){
+            if (count_ < count_to_){
+                std::cout << count_ << std::endl;
+               ++count_;
+            
+            timer_.expires_at(timer_.expires_at() + boost::posix_time::seconds(1));
+            timer_.async_wait(boost::bind(&printer::print, this));
+            }
+       }
+};
+// o wiele prostszy zapis wywolania timera od poprzedniego przykladu
+int main(){
+    boost::asio::io_service io;
+    printer p(io);
+    io.run();
+}
+
+
+
