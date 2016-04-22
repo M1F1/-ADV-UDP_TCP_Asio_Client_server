@@ -1,7 +1,14 @@
-Nalezy wypelnic oznaczone pola ************** w:
+Należy zdefiniowac protokol wymiany pakietow (0 byte naglowkowy) w:
+
+XO/proto.txt
+
+oraz wypelnic oznaczone pola /**************/ na podstawie zdefiniowanego protokolu
+i slajdow z prezentacji:
+
 client/xo.client.cpp
 server/InputOutputTCP.h
- 
+
+
 tak aby gra dobrze dzialala,
 a pakiety danych byly wysylane we wlasciwy sposob.
 
