@@ -1,0 +1,32 @@
+S - server
+C - client
+protokol tekstowy
+
+S <-- C :
+get move request
+'g' byte(0-8)
+
+S --> C :
+byte 0: identyfikator pakietu
+get_move response
+'M' byte(0-8)
+
+show_welcome
+'W'
+
+show_board
+'B'  9 * byte ('o', 'x', ' ')
+
+show_player_turn
+'P' byte('o', 'x') 
+
+show_move_error
+'E' byte('o', 'x')
+
+show_draw
+'D'
+
+show_winner
+'I' byte('o', 'x')
+        
+
